@@ -1,0 +1,15 @@
+Unit]
+Description=Captcha Tracking Server
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/telegram-tracker
+Environment="PATH=/root/telegram-tracker/venv/bin"
+ExecStart=/root/telegram-tracker/venv/bin/gunicorn --workers 3 --bind 0.0.0.0:8080 captcha_server:app
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
